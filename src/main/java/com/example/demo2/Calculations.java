@@ -17,14 +17,18 @@ public class Calculations {
     }*/
 }
 
-class division extends Calculations {
+class Addition extends Calculations {
 
 }
 
-class addition extends Calculations {
+class Subtraction extends Calculations {
 
 }
 
-class subtraction extends Calculations {
+class Multiplication extends Calculations {
+
+}
+
+class Division extends Calculations {
 
 }
