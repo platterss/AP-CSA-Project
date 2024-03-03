@@ -40,7 +40,6 @@ public abstract class Calculation {
     abstract String getExpression();
 
     abstract int getResult();
-
 }
 
 class Addition extends Calculation {
