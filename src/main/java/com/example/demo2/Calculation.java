@@ -3,7 +3,6 @@ package com.example.demo2;
 import java.util.ArrayList;
 import java.util.Collections;
 
-//test
 public abstract class Calculation {
     protected ArrayList<Integer> numbers;
 
