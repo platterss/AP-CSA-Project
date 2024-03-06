@@ -37,9 +37,9 @@ public abstract class Calculation {
         }
     }
 
-    abstract String getExpression();
+    public abstract String getExpression();
 
-    abstract int getResult();
+    public abstract int getResult();
 }
 
 class Addition extends Calculation {

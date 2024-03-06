@@ -1,9 +1,12 @@
 package com.example.demo2;
 
+import com.example.demo2.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-
+import javafx.scene.layout.VBox;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class HelloController {
@@ -21,6 +24,9 @@ public class HelloController {
     private Button r3;
     @FXML
     private Button next;
+    private Monster monster = new Monster(300, 1);
+    @FXML
+    private Person hero = new Person(100);
 
     private Calculation calculation;
     private int currentProblem;
@@ -71,6 +77,9 @@ public class HelloController {
             welcomeText.setText("Correct");
             next.setVisible(true);
             currentProblem++;
+            monster.takeDamage();
+            System.out.println(monster.getHealth());
+            hero.setHealth(hero.getHealth() - 10); // reduce the hero's health by 10
         } else {
             welcomeText.setText("Incorrect");
         }
@@ -88,5 +97,16 @@ public class HelloController {
             System.exit(0);
         }
         getProblem();
+    }
+
+    @FXML
+    private void initialize() {
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
+        fxmlLoader.setController(this);
+        try {
+            fxmlLoader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
