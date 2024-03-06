@@ -1,15 +1,15 @@
 package com.example.demo2;
 
-import com.example.demo2.*;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class HelloController {
+    @FXML
+    public Label healthText;
+    @FXML
+    public Label monsterHealthText;
     @FXML
     private Label welcomeText;
     @FXML
@@ -24,9 +24,9 @@ public class HelloController {
     private Button r3;
     @FXML
     private Button next;
-    private Monster monster = new Monster(300, 1);
-    @FXML
-    private Person hero = new Person(100);
+
+    private Monster monster;
+    private Person hero;
 
     private Calculation calculation;
     private int currentProblem;
@@ -37,11 +37,15 @@ public class HelloController {
     @FXML
     protected void onStart() {
         calculation = new Addition();
+        monster = new Monster(300/*, 1*/);
+        hero = new Person(100);
 
         st.setVisible(false);
         r1.setVisible(true);
         r2.setVisible(true);
         r3.setVisible(true);
+        healthText.setVisible(true);
+        monsterHealthText.setVisible(true);
 
         currentProblem = 1;
         getProblem();
@@ -70,6 +74,9 @@ public class HelloController {
         r1.setText(String.valueOf(answerBank.get(0)));
         r2.setText(String.valueOf(answerBank.get(1)));
         r3.setText(String.valueOf(answerBank.get(2)));
+
+        healthText.setText("Your health: " + hero.getHealth());
+        monsterHealthText.setText("Monster's health: " + monster.getHealth());
     }
 
     private void checkAnswer(Button clicked) {
@@ -79,11 +86,14 @@ public class HelloController {
             currentProblem++;
             monster.takeDamage();
             System.out.println(monster.getHealth());
-            hero.setHealth(hero.getHealth() - 10); // reduce the hero's health by 10
         } else {
             welcomeText.setText("Incorrect");
+            hero.setHealth(hero.getHealth() - 10); // reduce the hero's health by 10
+            System.out.println(hero.getHealth());
         }
         welcomeText.setVisible(true);
+        healthText.setText("Your health: " + hero.getHealth());
+        monsterHealthText.setText("Monster's health: " + monster.getHealth());
     }
 
     public void onNextClick() {
@@ -97,16 +107,5 @@ public class HelloController {
             System.exit(0);
         }
         getProblem();
-    }
-
-    @FXML
-    private void initialize() {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        fxmlLoader.setController(this);
-        try {
-            fxmlLoader.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

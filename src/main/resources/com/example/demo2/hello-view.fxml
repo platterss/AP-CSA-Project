@@ -12,8 +12,10 @@
 
     <Label fx:id="welcomeText" />
     <Button fx:id="st" mnemonicParsing="false" onAction="#onStart" text="Start" />
-    <Button fx:id="r1" onAction="#onR1Click" text="response1" visible="false"/>
+    <Button fx:id="r1" onAction="#onR1Click" text="response1" visible="false" />
     <Button fx:id="r2" onAction="#onR2Click" text="response2" visible="false" />
     <Button fx:id="r3" onAction="#onR3Click" text="response3" visible="false" />
+   <Label fx:id="healthText" text="Your health:" visible="false" />
+   <Label fx:id="monsterHealthText" text="Monster's health:" visible="false" />
     <Button fx:id="next" onAction="#onNextClick" text="Next" visible="false" />
 </VBox>
