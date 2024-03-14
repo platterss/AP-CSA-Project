@@ -94,23 +94,26 @@ public class HelloController {
     }
 
     private void checkAnswer(Button clicked) {
-        if (Integer.parseInt(clicked.getText()) == calculation.getResult()) {
-            welcomeText.setText("Correct");
-            next.setVisible(true);
-            currentProblem++;
-            monster.takeDamage();
-            System.out.println(monster.getHealth());
-            monsterSprite = new Sprite(new Image(getClass().getResource("/chris.jpg").toExternalForm()));
-        } else {
-            welcomeText.setText("Incorrect");
-            hero.setHealth(hero.getHealth() - 10); // reduce the hero's health by 10
-            System.out.println(hero.getHealth());
-            monsterSprite = new Sprite(new Image(getClass().getResource("/chris_angry.jpg").toExternalForm()));
+        if (!next.isVisible()) {
+            if (Integer.parseInt(clicked.getText()) == calculation.getResult()) {
+                welcomeText.setText("Correct");
+                next.setVisible(true);
+                currentProblem++;
+                monster.takeDamage();
+                System.out.println(monster.getHealth());
+                monsterSprite = new Sprite(new Image(getClass().getResource("/chris.jpg").toExternalForm()));
+            } else {
+                welcomeText.setText("Incorrect");
+                hero.setHealth(hero.getHealth() - 10); // reduce the hero's health by 10
+                System.out.println(hero.getHealth());
+                monsterSprite = new Sprite(new Image(getClass().getResource("/chris_angry.jpg").toExternalForm()));
+            }
+
+            welcomeText.setVisible(true);
+            healthText.setText("Your health: " + hero.getHealth());
+            monsterHealthText.setText("Monster's health: " + monster.getHealth());
+            monsterSpriteView.setImage(monsterSprite.getView().getImage());
         }
-        welcomeText.setVisible(true);
-        healthText.setText("Your health: " + hero.getHealth());
-        monsterHealthText.setText("Monster's health: " + monster.getHealth());
-        monsterSpriteView.setImage(monsterSprite.getView().getImage());
     }
 
     public void onNextClick() {
