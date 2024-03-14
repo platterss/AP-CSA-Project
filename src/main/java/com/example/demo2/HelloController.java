@@ -3,13 +3,18 @@ package com.example.demo2;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 import java.util.ArrayList;
 
 public class HelloController {
     @FXML
-    public Label healthText;
+    private Label healthText;
     @FXML
-    public Label monsterHealthText;
+    private Label monsterHealthText;
+    @FXML
+    private ImageView monsterSpriteView;
     @FXML
     private Label welcomeText;
     @FXML
@@ -28,6 +33,9 @@ public class HelloController {
     private Monster monster;
     private Person hero;
 
+    private Sprite heroSprite;
+    private Sprite monsterSprite;
+
     private Calculation calculation;
     private int currentProblem;
 
@@ -39,6 +47,9 @@ public class HelloController {
         calculation = new Addition();
         monster = new Monster(300/*, 1*/);
         hero = new Person(100);
+        monsterSprite = new Sprite(new Image(getClass().getResource("/chris.jpg").toExternalForm()));
+
+        monsterSpriteView.setImage(monsterSprite.getView().getImage());
 
         st.setVisible(false);
         r1.setVisible(true);
@@ -46,6 +57,7 @@ public class HelloController {
         r3.setVisible(true);
         healthText.setVisible(true);
         monsterHealthText.setVisible(true);
+        monsterSpriteView.setVisible(true);
 
         currentProblem = 1;
         getProblem();
@@ -77,6 +89,8 @@ public class HelloController {
 
         healthText.setText("Your health: " + hero.getHealth());
         monsterHealthText.setText("Monster's health: " + monster.getHealth());
+
+        monsterSpriteView.setImage(monsterSprite.getView().getImage());
     }
 
     private void checkAnswer(Button clicked) {
@@ -86,14 +100,17 @@ public class HelloController {
             currentProblem++;
             monster.takeDamage();
             System.out.println(monster.getHealth());
+            monsterSprite = new Sprite(new Image(getClass().getResource("/chris.jpg").toExternalForm()));
         } else {
             welcomeText.setText("Incorrect");
             hero.setHealth(hero.getHealth() - 10); // reduce the hero's health by 10
             System.out.println(hero.getHealth());
+            monsterSprite = new Sprite(new Image(getClass().getResource("/chris_angry.jpg").toExternalForm()));
         }
         welcomeText.setVisible(true);
         healthText.setText("Your health: " + hero.getHealth());
         monsterHealthText.setText("Monster's health: " + monster.getHealth());
+        monsterSpriteView.setImage(monsterSprite.getView().getImage());
     }
 
     public void onNextClick() {
