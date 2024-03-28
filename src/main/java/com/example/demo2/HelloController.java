@@ -117,7 +117,7 @@ public class HelloController {
                 currentProblem++;
             } else {
                 welcomeText.setText("Incorrect");
-                hero.setHealth(hero.getHealth() - 10);
+                hero.takeDamage();
                 System.out.println(hero.getHealth());
                 heroSprite = new Sprite(getHeroAngry());
                 monsterSprite = new Sprite(getMonsterAngry());

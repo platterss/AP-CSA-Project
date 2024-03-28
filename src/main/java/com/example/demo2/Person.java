@@ -11,17 +11,18 @@ public class Person {
         return health;
     }
 
+    public void takeDamage() {
+        this.setHealth(this.getHealth() - 10);
+    }
+
     public void setHealth(int health) {
         this.health = health;
     }
 }
 
 class Monster extends Person {
-    // private int type;
-
-    public Monster(int health/*, int type*/){
+    public Monster(int health){
        super(health);
-       // this.type = type;
     }
 
     public void takeDamage() {
