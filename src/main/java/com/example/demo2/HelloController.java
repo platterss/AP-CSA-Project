@@ -41,16 +41,18 @@ public class HelloController {
 
     private Calculation calculation;
     private int currentProblem;
+    private int currentMonster;
 
     public HelloController() {
     }
 
     @FXML
     protected void onStart() {
+        currentMonster = 1;
         currentProblem = 1;
         calculation = new Addition();
-        monster = new Monster(300/*, 1*/);
-        hero = new Person(50);
+        monster = new Monster(300);
+        hero = new Person(500);
         heroSprite = new Sprite(getHeroNormal());
         monsterSprite = new Sprite(getMonsterNormal());
 
@@ -115,14 +117,20 @@ public class HelloController {
                 currentProblem++;
             } else {
                 welcomeText.setText("Incorrect");
-                hero.setHealth(hero.getHealth() - 10); // reduce the hero's health by 10
+                hero.setHealth(hero.getHealth() - 10);
                 System.out.println(hero.getHealth());
                 heroSprite = new Sprite(getHeroAngry());
                 monsterSprite = new Sprite(getMonsterAngry());
             }
 
-            if (hero.getHealth() < 0) {
+            if (hero.getHealth() <= 0) {
+                System.out.println("No health");
                 System.exit(0);
+            }
+
+            if (monster.getHealth() <= 0) {
+                currentMonster++;
+                monster = new Monster(300);
             }
 
             welcomeText.setVisible(true);
@@ -141,7 +149,13 @@ public class HelloController {
         } else if (currentProblem == 3) {
             calculation = new Multiplication();
         } else if (currentProblem > 3) {
-            System.exit(0);
+            if (currentMonster > 3) {
+                System.out.println("No more monsters");
+                System.exit(0);
+            }
+
+            currentProblem = 1;
+            calculation = new Addition();
         }
         getProblem();
     }
@@ -157,15 +171,15 @@ public class HelloController {
     private Image getMonsterNormal() {
         String jpg = "";
 
-        if (currentProblem == 1) {
+        if (currentMonster == 1) {
             jpg = "/chris.jpg";
         }
 
-        if (currentProblem == 2) {
+        if (currentMonster == 2) {
             jpg = "/kenny.jpg";
         }
 
-        if (currentProblem == 3) {
+        if (currentMonster == 3) {
             jpg = "/daniel.jpg";
         }
 
@@ -175,15 +189,15 @@ public class HelloController {
     private Image getMonsterAngry() {
         String jpg = "";
 
-        if (currentProblem == 1) {
+        if (currentMonster == 1) {
             jpg = "/chris_angry.jpg";
         }
 
-        if (currentProblem == 2) {
+        if (currentMonster == 2) {
             jpg = "/kenny_disappointed.jpg";
         }
 
-        if (currentProblem == 3) {
+        if (currentMonster == 3) {
             jpg = "/daniel_HANDSOME.jpg";
         }
 
