@@ -10,6 +10,8 @@ import java.util.ArrayList;
 
 public class HelloController {
     @FXML
+    public ImageView heroSpriteView;
+    @FXML
     private Label healthText;
     @FXML
     private Label monsterHealthText;
