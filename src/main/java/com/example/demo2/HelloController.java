@@ -52,7 +52,7 @@ public class HelloController {
         currentProblem = 1;
         calculation = new Addition();
         monster = new Monster(300);
-        hero = new Person(500);
+        hero = new Person(500); // Only super high for testing
         heroSprite = new Sprite(getHeroNormal());
         monsterSprite = new Sprite(getMonsterNormal());
 
