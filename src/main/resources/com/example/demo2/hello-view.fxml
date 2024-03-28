@@ -9,12 +9,12 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <HBox prefHeight="100.0" prefWidth="200.0">
-      <children>
-         <ImageView fx:id="heroSpriteView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false" />
-         <ImageView fx:id="monsterSpriteView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-      </children>
-   </HBox>
+    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+        <ImageView fx:id="heroSpriteView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"
+                   visible="false"/>
+        <ImageView fx:id="monsterSpriteView" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"
+                   visible="false"/>
+    </HBox>
     <Label fx:id="question" layoutX="232.0" layoutY="81.0" />
 
     <Label fx:id="welcomeText" />

@@ -7,14 +7,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class HelloController {
-    @FXML
-    public ImageView heroSpriteView;
     @FXML
     private Label healthText;
     @FXML
     private Label monsterHealthText;
+    @FXML
+    private ImageView heroSpriteView;
     @FXML
     private ImageView monsterSpriteView;
     @FXML
@@ -46,11 +47,14 @@ public class HelloController {
 
     @FXML
     protected void onStart() {
+        currentProblem = 1;
         calculation = new Addition();
         monster = new Monster(300/*, 1*/);
-        hero = new Person(100);
-        monsterSprite = new Sprite(new Image(getClass().getResource("/chris.jpg").toExternalForm()));
+        hero = new Person(50);
+        heroSprite = new Sprite(getHeroNormal());
+        monsterSprite = new Sprite(getMonsterNormal());
 
+        heroSpriteView.setImage(heroSprite.getView().getImage());
         monsterSpriteView.setImage(monsterSprite.getView().getImage());
 
         st.setVisible(false);
@@ -58,10 +62,10 @@ public class HelloController {
         r2.setVisible(true);
         r3.setVisible(true);
         healthText.setVisible(true);
+        heroSpriteView.setVisible(true);
         monsterHealthText.setVisible(true);
         monsterSpriteView.setVisible(true);
 
-        currentProblem = 1;
         getProblem();
     }
 
@@ -92,6 +96,10 @@ public class HelloController {
         healthText.setText("Your health: " + hero.getHealth());
         monsterHealthText.setText("Monster's health: " + monster.getHealth());
 
+        heroSprite = new Sprite(getHeroNormal());
+        monsterSprite = new Sprite(getMonsterNormal());
+
+        heroSpriteView.setImage(heroSprite.getView().getImage());
         monsterSpriteView.setImage(monsterSprite.getView().getImage());
     }
 
@@ -100,20 +108,27 @@ public class HelloController {
             if (Integer.parseInt(clicked.getText()) == calculation.getResult()) {
                 welcomeText.setText("Correct");
                 next.setVisible(true);
-                currentProblem++;
                 monster.takeDamage();
                 System.out.println(monster.getHealth());
-                monsterSprite = new Sprite(new Image(getClass().getResource("/chris.jpg").toExternalForm()));
+                heroSprite = new Sprite(getHeroNormal());
+                monsterSprite = new Sprite(getMonsterNormal());
+                currentProblem++;
             } else {
                 welcomeText.setText("Incorrect");
                 hero.setHealth(hero.getHealth() - 10); // reduce the hero's health by 10
                 System.out.println(hero.getHealth());
-                monsterSprite = new Sprite(new Image(getClass().getResource("/chris_angry.jpg").toExternalForm()));
+                heroSprite = new Sprite(getHeroAngry());
+                monsterSprite = new Sprite(getMonsterAngry());
+            }
+
+            if (hero.getHealth() < 0) {
+                System.exit(0);
             }
 
             welcomeText.setVisible(true);
             healthText.setText("Your health: " + hero.getHealth());
             monsterHealthText.setText("Monster's health: " + monster.getHealth());
+            heroSpriteView.setImage(heroSprite.getView().getImage());
             monsterSpriteView.setImage(monsterSprite.getView().getImage());
         }
     }
@@ -129,5 +144,49 @@ public class HelloController {
             System.exit(0);
         }
         getProblem();
+    }
+
+    private Image getHeroNormal() {
+        return new Image(Objects.requireNonNull(getClass().getResource("/enriquez.jpg")).toExternalForm());
+    }
+
+    private Image getHeroAngry() {
+        return new Image(Objects.requireNonNull(getClass().getResource("/enriquez_angry.jpg")).toExternalForm());
+    }
+
+    private Image getMonsterNormal() {
+        String jpg = "";
+
+        if (currentProblem == 1) {
+            jpg = "/chris.jpg";
+        }
+
+        if (currentProblem == 2) {
+            jpg = "/kenny.jpg";
+        }
+
+        if (currentProblem == 3) {
+            jpg = "/daniel.jpg";
+        }
+
+        return new Image(Objects.requireNonNull(getClass().getResource(jpg)).toExternalForm());
+    }
+
+    private Image getMonsterAngry() {
+        String jpg = "";
+
+        if (currentProblem == 1) {
+            jpg = "/chris_angry.jpg";
+        }
+
+        if (currentProblem == 2) {
+            jpg = "/kenny_disappointed.jpg";
+        }
+
+        if (currentProblem == 3) {
+            jpg = "/daniel_HANDSOME.jpg";
+        }
+
+        return new Image(Objects.requireNonNull(getClass().getResource(jpg)).toExternalForm());
     }
 }
