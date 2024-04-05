@@ -13,7 +13,7 @@ public class EndController {
 
     public void onPlayAgainBtnClick() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/fight1-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("main-view.fxml"));
             Parent root = loader.load();
 
             Stage stage = (Stage) playAgainBtn.getScene().getWindow();
