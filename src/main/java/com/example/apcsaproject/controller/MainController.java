@@ -14,7 +14,7 @@ public class MainController {
         this.mainApp = mainApp;
     }
 
-    public void onStartBtnClick(ActionEvent actionEvent) {
+    public void onStartBtnClick() {
         try {
             mainApp.changeScene("/FXML/fight1-view.fxml");
         } catch (IOException e) {
