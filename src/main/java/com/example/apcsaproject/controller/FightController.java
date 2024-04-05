@@ -80,9 +80,11 @@ public abstract class FightController implements Initializable {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource(getNextFight()));
                     Parent root = loader.load();
 
-                    FightController nextController = loader.getController();
-                    nextController.setHeroHealth(hero.getHealth());
-                    nextController.initializeEntities();
+                    if (!getNextFight().equals("/FXML/congratulations-view.fxml")) {
+                        FightController nextController = loader.getController();
+                        nextController.setHeroHealth(hero.getHealth());
+                        nextController.initializeEntities();
+                    }
 
                     Stage stage = (Stage) nextBtn.getScene().getWindow();
                     stage.setScene(new Scene(root));
