@@ -23,19 +23,18 @@ import java.util.ResourceBundle;
 
 public abstract class FightController implements Initializable {
     @FXML
-    protected Label mathExpressionTxt, timeTxt, resultTxt, heroHealthTxt, opponentHealthTxt;
+    private Label mathExpressionTxt, timeTxt, resultTxt, heroHealthTxt, opponentHealthTxt;
     @FXML
-    protected Button answer1Btn, answer2Btn, answer3Btn, nextBtn;
+    private Button answer1Btn, answer2Btn, answer3Btn, nextBtn;
     @FXML
-    protected ImageView heroView, opponentView;
+    private ImageView heroView, opponentView;
 
-    protected Expression expression;
-    protected Entity hero;
-    protected Entity opponent;
+    private Expression expression;
+    private Entity hero;
+    private Entity opponent;
 
     private Timeline timeline;
     private int timeMilliseconds;
-    protected int initialHeroHealth = 100;
 
     protected abstract String getNextFight();
     protected abstract String getOpponentDefaultSprite();
@@ -47,27 +46,6 @@ public abstract class FightController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeEntities();
         generateQuestion();
-    }
-
-    protected void updateTimer() {
-        timeMilliseconds -= 100;
-
-        updateTimerLabel();
-
-        if (timeMilliseconds <= 0) {
-            timeline.stop();
-            timeTxt.setText("0.0");
-
-            resultTxt.setText("Out of time");
-            hero.setHealth(hero.getHealth() - 10);
-            updateScreen();
-        }
-    }
-
-    protected void updateTimerLabel() {
-        int secondsPart = timeMilliseconds / 1000;
-        int milliSecondsPart = timeMilliseconds % 1000;
-        timeTxt.setText(secondsPart + "." + String.format("%03d", milliSecondsPart));
     }
 
     public void onAnswer1Click() {
@@ -83,27 +61,39 @@ public abstract class FightController implements Initializable {
     }
 
     public void onNextBtnClick() {
-        if (opponent.getHealth() > 0) {
-            generateQuestion();
-        } else {
+        if (hero.getHealth() == 0) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource(getNextFight()));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/gameOver-view.fxml"));
                 Parent root = loader.load();
 
-                FightController nextController = loader.getController();
-                nextController.setHeroHealth(hero.getHealth());
-                nextController.initializeEntities();
-
-                Stage stage = (Stage) timeTxt.getScene().getWindow();
+                Stage stage = (Stage) nextBtn.getScene().getWindow();
                 stage.setScene(new Scene(root));
                 stage.show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+
+        } else if (opponent.getHealth() > 0) {
+                generateQuestion();
+            } else {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource(getNextFight()));
+                    Parent root = loader.load();
+
+                    FightController nextController = loader.getController();
+                    nextController.setHeroHealth(hero.getHealth());
+                    nextController.initializeEntities();
+
+                    Stage stage = (Stage) nextBtn.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
     }
 
-    public void setHeroHealth(int health) {
+    private void setHeroHealth(int health) {
         if (hero == null) {
             hero = new Entity(health, getHeroDefaultSprite());
         } else {
@@ -112,8 +102,9 @@ public abstract class FightController implements Initializable {
         heroHealthHasBeenSet = true;
     }
 
-    public void initializeEntities() {
+    private void initializeEntities() {
         if (!heroHealthHasBeenSet) {
+            int initialHeroHealth = 100;
             hero = new Entity(initialHeroHealth, getHeroDefaultSprite());
         }
 
@@ -125,7 +116,7 @@ public abstract class FightController implements Initializable {
         opponentHealthTxt.setText("Health: " + opponent.getHealth());
     }
 
-    protected void generateQuestion() {
+    private void generateQuestion() {
         if (timeline != null) {
             timeline.stop();
         }
@@ -148,7 +139,7 @@ public abstract class FightController implements Initializable {
         timeline.play();
     }
 
-    protected void checkAnswer(Button button) {
+    private void checkAnswer(Button button) {
         if (resultTxt.getText().equals("Choose an answer:")) {
             timeline.stop();
             if (Integer.parseInt(button.getText()) == expression.getAnswer()) {
@@ -176,6 +167,27 @@ public abstract class FightController implements Initializable {
 
         opponentView.setImage(opponent.getImage());
         opponentHealthTxt.setText("Health: " + opponent.getHealth());
+    }
+
+    private void updateTimer() {
+        timeMilliseconds -= 100;
+
+        updateTimerLabel();
+
+        if (timeMilliseconds <= 0) {
+            timeline.stop();
+            timeTxt.setText("0.0");
+
+            resultTxt.setText("Out of time");
+            hero.setHealth(hero.getHealth() - 10);
+            updateScreen();
+        }
+    }
+
+    private void updateTimerLabel() {
+        int secondsPart = timeMilliseconds / 1000;
+        int milliSecondsPart = timeMilliseconds % 1000;
+        timeTxt.setText(secondsPart + "." + String.format("%03d", milliSecondsPart));
     }
 
     private String getHeroDefaultSprite() {
