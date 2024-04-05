@@ -18,6 +18,8 @@ public class Entity {
 
         if (this.health < 0) {
             this.health = 0;
+        } else if (this.health > 500) {
+            this.health = 500;
         }
     }
 
