@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Random;
 
 public class Expression {
-    private int number1;
-    private int number2;
+    private final int number1;
+    private final int number2;
     private char operation;
     private int answer;
     private static final Random rand = new Random();
@@ -45,13 +45,10 @@ public class Expression {
 
         int wrongAnswer1, wrongAnswer2;
 
+        wrongAnswer1 = generateWrongAnswer(answer);
         do {
-            wrongAnswer1 = answer + rand.nextInt(20) - 10;
-        } while (wrongAnswer1 == answer || wrongAnswer1 < 0);
-
-        do {
-            wrongAnswer2 = answer + rand.nextInt(20) - 10;
-        } while (wrongAnswer2 == answer || wrongAnswer2 == wrongAnswer1 || wrongAnswer2 < 0);
+            wrongAnswer2 = generateWrongAnswer(answer);
+        } while (wrongAnswer2 == wrongAnswer1);
 
         answers.add(wrongAnswer1);
         answers.add(wrongAnswer2);
@@ -59,5 +56,20 @@ public class Expression {
         java.util.Collections.shuffle(answers);
 
         return answers;
+    }
+
+    private int generateWrongAnswer(int correctAnswer) {
+        int delta = rand.nextInt(15) + 1; // Ensure at least some difference
+        boolean add = rand.nextBoolean();
+
+        // Generate a wrong answer that's different from the correct answer
+        int wrongAnswer = add ? correctAnswer + delta : correctAnswer - delta;
+
+        // Ensure the wrong answer is non-negative
+        if (wrongAnswer < 0) {
+            wrongAnswer = correctAnswer + delta; // Adjust if subtraction made it negative
+        }
+
+        return wrongAnswer;
     }
 }

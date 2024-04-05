@@ -21,13 +21,11 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class Fight1Controller implements Initializable {
+public class Fight3Controller implements Initializable {
     private final String HERO_DEFAULT_SPRITE = "/Images/enriquez.jpg";
     private final String HERO_ALTERNATE_SPRITE = "/Images/enriquez_2.jpg";
-    private final String OPPONENT_DEFAULT_SPRITE = "/Images/daniel.jpg";
-    private final String OPPONENT_ALTERNATE_SPRITE = "/Images/daniel_2.jpg";
-
-    public static int endHeroHealth;
+    private final String OPPONENT_DEFAULT_SPRITE = "/Images/chris.jpg";
+    private final String OPPONENT_ALTERNATE_SPRITE = "/Images/chris_2.jpg";
 
     @FXML
     public Label mathExpressionTxt;
@@ -61,7 +59,7 @@ public class Fight1Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        hero = new Entity(100, HERO_DEFAULT_SPRITE);
+        hero = new Entity(Fight2Controller.endHeroHealth, HERO_DEFAULT_SPRITE);
         heroView.setImage(hero.getImage());
         heroHealthTxt.setText("Health: " + hero.getHealth());
 
@@ -111,9 +109,8 @@ public class Fight1Controller implements Initializable {
         if (opponent.getHealth() > 0) {
             generateQuestion();
         } else {
-            endHeroHealth = hero.getHealth();
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/fight2-view.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML/fight1-view.fxml"));
                 Parent root = loader.load();
 
                 Stage stage = (Stage) timeTxt.getScene().getWindow();

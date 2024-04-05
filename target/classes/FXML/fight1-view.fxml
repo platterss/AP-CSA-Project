@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.apcsaproject.controller.Fight1Controller">
+   <children>
+      <Button fx:id="answer1Btn" layoutX="268.0" layoutY="187.0" mnemonicParsing="false" onAction="#onAnswer1Click" text="answer 1" textAlignment="CENTER" />
+      <Button fx:id="answer2Btn" layoutX="267.0" layoutY="227.0" mnemonicParsing="false" onAction="#onAnswer2Click" text="answer 2" textAlignment="CENTER" />
+      <Button fx:id="answer3Btn" layoutX="267.0" layoutY="267.0" mnemonicParsing="false" onAction="#onAnswer3Click" text="answer 3" textAlignment="CENTER" />
+      <Label fx:id="mathExpressionTxt" layoutX="270.0" layoutY="64.0" text="Expression" />
+      <ImageView fx:id="heroView" fitHeight="130.0" fitWidth="170.0" layoutX="35.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="opponentView" fitHeight="130.0" fitWidth="170.0" layoutX="400.0" layoutY="122.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="107.0" layoutY="98.0" text="Hero" />
+      <Label layoutX="457.0" layoutY="98.0" text="Opponent" />
+      <Label fx:id="heroHealthTxt" layoutX="101.0" layoutY="264.0" text="Health:" />
+      <Label fx:id="opponentHealthTxt" layoutX="465.0" layoutY="264.0" text="Health:" />
+      <Button fx:id="nextBtn" layoutX="279.0" layoutY="331.0" mnemonicParsing="false" onAction="#onNextBtnClick" text="Next" />
+      <Label fx:id="resultTxt" layoutX="248.0" layoutY="153.0" text="Choose an answer:" />
+      <Label fx:id="timeTxt" layoutX="286.0" layoutY="98.0" text="Time" />
+   </children>
+</AnchorPane>
