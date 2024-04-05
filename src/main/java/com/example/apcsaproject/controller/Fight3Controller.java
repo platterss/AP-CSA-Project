@@ -3,7 +3,7 @@ package com.example.apcsaproject.controller;
 public class Fight3Controller extends FightController {
     @Override
     protected String getNextFight() {
-        return "/FXML/fight1-view.fxml";
+        return "/FXML/congratulations-view.fxml";
     }
 
     @Override
