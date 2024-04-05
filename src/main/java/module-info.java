@@ -1,4 +1,4 @@
-module com.example.demo2 {
+module com.example.apcsaproject {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -11,6 +11,8 @@ module com.example.demo2 {
     // requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    opens com.example.demo2 to javafx.fxml;
-    exports com.example.demo2;
+    opens com.example.apcsaproject to javafx.fxml;
+    exports com.example.apcsaproject;
+    exports com.example.apcsaproject.controller;
+    opens com.example.apcsaproject.controller to javafx.fxml;
 }
