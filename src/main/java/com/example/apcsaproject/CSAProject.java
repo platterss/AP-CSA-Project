@@ -1,16 +1,16 @@
 package com.example.apcsaproject;
 
-import com.example.apcsaproject.controller.MainController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.Node;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
 import java.io.IOException;
+import java.util.function.Consumer;
 
 public class CSAProject extends Application {
-    private Stage primaryStage;
 
     public static void main(String[] args) {
         launch(args);
@@ -18,21 +18,27 @@ public class CSAProject extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        this.primaryStage = stage;
-
         FXMLLoader loader = new FXMLLoader(CSAProject.class.getResource("/FXML/main-view.fxml"));
         Parent root = loader.load();
 
-        MainController controller = loader.getController();
-        controller.setMainApp(this);
-
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
-    public void changeScene(String fxmlFile) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
-        Parent root = loader.load();
-        primaryStage.setScene(new Scene(root));
+    public static void loadScene(String fxmlPath, Node node, Consumer<FXMLLoader> controllerSetup) {
+        try {
+            FXMLLoader loader = new FXMLLoader(CSAProject.class.getResource(fxmlPath));
+            Parent root = loader.load();
+
+            if (controllerSetup != null) {
+                controllerSetup.accept(loader);
+            }
+
+            Stage stage = (Stage) node.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -1,27 +1,13 @@
 package com.example.apcsaproject.controller;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import com.example.apcsaproject.CSAProject;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class EndController {
     public Button playAgainBtn, exitBtn;
 
     public void onPlayAgainBtnClick() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("main-view.fxml"));
-            Parent root = loader.load();
-
-            Stage stage = (Stage) playAgainBtn.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        CSAProject.loadScene("/FXML/main-view.fxml", playAgainBtn, null);
     }
 
     public void onExitBtnClick() {
