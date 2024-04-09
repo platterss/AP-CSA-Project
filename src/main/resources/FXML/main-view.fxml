@@ -4,18 +4,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.apcsaproject.controller.MainController">
-   <VBox alignment="CENTER" layoutX="174.0" layoutY="41.0" prefHeight="301.0" prefWidth="251.0" spacing="20.0">
-      <Label alignment="CENTER" contentDisplay="CENTER" text="Game Title">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.apcsaproject.controller.MainController">
+   <VBox alignment="CENTER" layoutX="14.0" layoutY="50.0" prefHeight="301.0" prefWidth="573.0" spacing="20.0">
+      <Label alignment="CENTER" contentDisplay="CENTER" text="Enriquez's World">
          <font>
-            <Font size="50.0"/>
+            <Font size="50.0" />
          </font>
       </Label>
-      <Button fx:id="startBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onStartBtnClick" text="Start"
-              textAlignment="CENTER">
+      <Button fx:id="startBtn" alignment="CENTER" mnemonicParsing="false" onAction="#onStartBtnClick" text="Start" textAlignment="CENTER">
          <font>
-            <Font size="35.0"/>
+            <Font size="35.0" />
          </font>
       </Button>
    </VBox>
