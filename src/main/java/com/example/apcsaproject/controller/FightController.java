@@ -159,6 +159,10 @@ public abstract class FightController implements Initializable {
             } else {
                 heroHealthChange += " (+" + (hero.getHealth() - heroPriorHealth) + ")";
             }
+
+            if (hero.getHealth() == 0) {
+                heroHealthChange += "\nDefeated!";
+            }
         }
 
         if (opponentPriorHealth != opponent.getHealth()) {
@@ -166,6 +170,10 @@ public abstract class FightController implements Initializable {
                 opponentHealthChange += " (-" + (opponentPriorHealth - opponent.getHealth()) + ")";
             } else {
                 opponentHealthChange += " (+" + (opponent.getHealth() - opponentPriorHealth) + ")";
+            }
+
+            if (opponent.getHealth() == 0) {
+                opponentHealthChange += "\nDefeated!";
             }
         }
 

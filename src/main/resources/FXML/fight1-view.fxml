@@ -13,7 +13,7 @@
             <Font size="18.0" />
          </font></Label>
       <ImageView fx:id="opponentView" fitHeight="130.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="opponentHealthTxt" alignment="CENTER" contentDisplay="CENTER" text="Health:">
+      <Label fx:id="opponentHealthTxt" alignment="CENTER" contentDisplay="CENTER" text="Health:" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font></Label>
@@ -24,7 +24,7 @@
             <Font size="18.0" />
          </font></Label>
       <ImageView fx:id="heroView" fitHeight="130.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="heroHealthTxt" alignment="CENTER" contentDisplay="CENTER" text="Health:">
+      <Label fx:id="heroHealthTxt" alignment="CENTER" contentDisplay="CENTER" text="Health:" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font></Label>
