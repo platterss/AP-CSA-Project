@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.function.Consumer;
 
 public class CSAProject extends Application {
-
     public static void main(String[] args) {
         launch(args);
     }
