@@ -19,8 +19,7 @@ import java.util.ResourceBundle;
 
 public abstract class FightController implements Initializable {
     private Expression expression;
-    private Entity hero;
-    private Entity opponent;
+    private Entity hero, opponent;
     private Timeline timeline;
     private int timeMilliseconds;
     private boolean heroHealthHasBeenSet = false;
