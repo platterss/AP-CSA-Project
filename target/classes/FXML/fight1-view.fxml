@@ -4,43 +4,74 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.apcsaproject.controller.Fight1Controller">
    <VBox alignment="CENTER" layoutX="400.0" layoutY="18.0" prefHeight="365.0" prefWidth="185.0" spacing="10.0">
-      <Label alignment="CENTER" contentDisplay="CENTER" text="Opponent"/>
-      <ImageView fx:id="opponentView" fitHeight="130.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true"/>
-      <Label fx:id="opponentHealthTxt" alignment="CENTER" contentDisplay="CENTER" text="Health:"/>
+      <Label alignment="CENTER" contentDisplay="CENTER" text="Opponent">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <ImageView fx:id="opponentView" fitHeight="130.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="opponentHealthTxt" alignment="CENTER" contentDisplay="CENTER" text="Health:" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
    </VBox>
    <VBox alignment="CENTER" layoutX="14.0" layoutY="18.0" prefHeight="365.0" prefWidth="185.0" spacing="10.0">
-      <Label alignment="CENTER" contentDisplay="CENTER" text="Hero"/>
-      <ImageView fx:id="heroView" fitHeight="130.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true"/>
-      <Label fx:id="heroHealthTxt" alignment="CENTER" contentDisplay="CENTER" text="Health:"/>
+      <Label alignment="CENTER" contentDisplay="CENTER" text="Hero">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
+      <ImageView fx:id="heroView" fitHeight="130.0" fitWidth="170.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="heroHealthTxt" alignment="CENTER" contentDisplay="CENTER" text="Health:" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font></Label>
    </VBox>
    <VBox alignment="CENTER" layoutX="215.0" layoutY="18.0" prefHeight="365.0" prefWidth="170.0" spacing="10.0">
-      <Label fx:id="mathExpressionTxt" alignment="CENTER" contentDisplay="CENTER" text="Expression"/>
-      <Label fx:id="timeTxt" alignment="CENTER" contentDisplay="CENTER" text="Time" textAlignment="CENTER"/>
-      <Label fx:id="resultTxt" alignment="CENTER" contentDisplay="CENTER" text="Choose an answer:">
+      <Label fx:id="mathExpressionTxt" alignment="CENTER" contentDisplay="CENTER" text="Expression">
+         <font>
+            <Font size="25.0" />
+         </font></Label>
+      <Label fx:id="timeTxt" alignment="CENTER" contentDisplay="CENTER" text="Time: 5.0 seconds" textAlignment="CENTER">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="resultTxt" alignment="CENTER" contentDisplay="CENTER" text="Answer Choices:">
          <VBox.margin>
-            <Insets top="20.0"/>
+            <Insets top="20.0" />
          </VBox.margin>
+         <font>
+            <Font size="15.0" />
+         </font>
       </Label>
-      <Button fx:id="answer1Btn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
-              onAction="#onAnswer1Click" text="answer 1" textAlignment="CENTER">
+      <Button fx:id="answer1Btn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onAnswer1Click" text="-" textAlignment="CENTER">
          <opaqueInsets>
-            <Insets/>
+            <Insets />
          </opaqueInsets>
          <VBox.margin>
-            <Insets/>
+            <Insets />
          </VBox.margin>
+         <font>
+            <Font size="15.0" />
+         </font>
       </Button>
-      <Button fx:id="answer2Btn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
-              onAction="#onAnswer2Click" text="answer 2" textAlignment="CENTER"/>
-      <Button fx:id="answer3Btn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
-              onAction="#onAnswer3Click" text="answer 3" textAlignment="CENTER"/>
-      <Button fx:id="nextBtn" mnemonicParsing="false" onAction="#onNextBtnClick" text="Next">
+      <Button fx:id="answer2Btn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onAnswer2Click" text="-" textAlignment="CENTER">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <Button fx:id="answer3Btn" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onAnswer3Click" text="-" textAlignment="CENTER">
+         <font>
+            <Font size="15.0" />
+         </font></Button>
+      <Button fx:id="nextBtn" mnemonicParsing="false" onAction="#onNextBtnClick" text="Start">
          <VBox.margin>
-            <Insets top="20.0"/>
+            <Insets top="20.0" />
          </VBox.margin>
+         <font>
+            <Font size="20.0" />
+         </font>
       </Button>
    </VBox>
    <opaqueInsets>
